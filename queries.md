@@ -44,7 +44,7 @@ limit
 
 ### 7. All the companies that have a null type of value on the `category_code` field.
 
-filter {category_code: null}
+filter {category_code: {$type: "null"}}
 project 
 sort 
 limit 
@@ -52,6 +52,7 @@ limit
 ### 8. All the companies that have at least 100 employees but less than 1000. Retrieve only the `name` and `number of employees` fields.
 
 filter  {$and: [{number_of_employees: {$gte: 100}}, {number_of_employees: {$lt: 1000}}]}
+Shorthand: {number_of_employees:{$gte: 100, $lt: 1000}}
 project {name: 1, number_of_employees: 1, _id: 0}
 sort 
 limit 
